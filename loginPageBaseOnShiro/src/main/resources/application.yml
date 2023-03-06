@@ -1,0 +1,13 @@
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shirodb?characterEncoding=utf-8&userSSL=false
+    username: root
+    password: root
+shiro:
+  loginUrl: /welcome/login
