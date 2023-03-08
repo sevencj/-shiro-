@@ -8,6 +8,8 @@ import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,6 +25,11 @@ public class UserServiceImpl implements UserService {
         UserEntity userInfo = userMapper.selectOne(wrapper);
 
         return userInfo;
+    }
+
+    @Override
+    public List<String> getUserRoleInfo(String principal) {
+        return userMapper.getUserRoleInfo(principal);
     }
 
 

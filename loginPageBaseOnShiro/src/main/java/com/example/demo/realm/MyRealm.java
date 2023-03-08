@@ -7,10 +7,13 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 
 @Component
@@ -22,7 +25,19 @@ public class MyRealm extends AuthorizingRealm {
     // 自定义授权方法
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        return null;
+        // 1.获取当前用户的身份信息
+        String principal = principalCollection.getPrimaryPrincipal().toString();
+
+        // 2.调用业务层获取用户的角色信息
+        List<String> roles = userService.getUserRoleInfo(principal);
+
+
+        // 3,创建对象，封装当前登录用户的角色，权限信息
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+        info.addRoles(roles);
+
+        return info;
     }
 
     // 自定义身份认证

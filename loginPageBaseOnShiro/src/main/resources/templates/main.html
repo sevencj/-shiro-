@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>主页面</h1>
+
+<br>
+登录用户为:<span th:text="${session.user}"></span>
+<br>
+<a href="/logout">log out</a>
+
+<br>
+<a href="/welcome/backend">后台管理（admin权限）</a>
+
+<br>
+<a href="/welcome/userPage">用户主页</a>
+
+</body>
+</html>
